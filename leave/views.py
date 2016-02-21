@@ -36,6 +36,7 @@ def mark_attendance_init(request):
 	except Attendance.DoesNotExist:
 		marked = False
 		status = None
+		approved = False
 	return render(request,'leave/mark_attendance.html',{'user':request.user,'today':str(timezone.now())[:10],'marked':marked,'status':status,'approved':approved})
 
 def logout_auth(request):
