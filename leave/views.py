@@ -48,7 +48,7 @@ def mark_attendance(request):
 	employee = Employee.objects.get(user = request.user)
 	status = attendance
 	try:
-		att = Attendance.objects.get(status = status, date = datetime.date.today())
+		att = Attendance.objects.get(employee = employee,status = status, date = datetime.date.today())
 	except Attendance.DoesNotExist:
 		att = Attendance.objects.create(employee = employee, status = status, date = datetime.date.today())
 	return render(request,'leave/mark_attendance.html',{'user':request.user,'today':str(timezone.now())[:10],'marked':True,'status':att.status})
